@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Site.Configurations
+namespace Gerenciador.Configurations
 {
 	public static class AutoMapperConfig
 	{

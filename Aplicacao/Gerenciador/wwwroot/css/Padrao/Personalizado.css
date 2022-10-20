@@ -1,0 +1,30 @@
+﻿.lead-500 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.back-img-wallpaper {
+    width: 100%;
+    padding: 0px 0px 100px;
+    background: url(/img/WallpaperHome.jpg) no-repeat bottom center scroll;
+    background-position: 30% 80%;
+    background-color: var(--bs-white);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.pointer{
+    cursor: pointer !important;
+}
+
+.alerta-position {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 2px 3px 0 rgb(136 136 136 / 30%);
+}

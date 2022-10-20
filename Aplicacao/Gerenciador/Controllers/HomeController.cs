@@ -16,6 +16,9 @@ namespace Gerenciador.Controllers
         }
 
         [HttpGet]
+        [Route("/Home")]
+        [Route("/Home/Index")]
+        [Route("/")]
         public IActionResult Index()
         {
             return View();

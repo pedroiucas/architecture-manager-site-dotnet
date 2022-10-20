@@ -2,13 +2,9 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/Gerenciador",
-      "sslPort": 0
-    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:64271",
-      "sslPort": 44361
+      "applicationUrl": "http://localhost:50297/",
+      "sslPort": 44367
     }
   },
   "profiles": {

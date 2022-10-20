@@ -1,4 +1,4 @@
-﻿using Site.Controllers;
+﻿using Gerenciador.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Site.Controllers
+namespace Gerenciador.Controllers
 {
     public class HomeController : BaseController
     {
@@ -16,6 +16,9 @@ namespace Site.Controllers
         }
 
         [HttpGet]
+        [Route("/Home")]
+        [Route("/Home/Index")]
+        [Route("/")]
         public IActionResult Index()
         {
             return View();

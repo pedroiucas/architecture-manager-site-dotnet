@@ -13,6 +13,10 @@ using Microsoft.AspNetCore.Http;
 using Gerenciador.Configurations;
 using System.Globalization;
 using Dominio.Helpers;
+using Dominio.Servicos;
+using Dominio.Interfaces;
+using Dominio.Repositorios;
+using Repositorio.Repositorios;
 
 namespace Gerenciador
 {
@@ -57,6 +61,12 @@ namespace Gerenciador
         private static void AddServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Servicos
+			services.AddScoped<IServicoExemplo, ServicoExemplo>();
+
+            //Repositorios
+            services.AddScoped<IRepositorioExemplo, RepositorioExemplo>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -83,8 +93,12 @@ namespace Gerenciador
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
+                    pattern: "{controller=Home}/{action=}");
             });
+
+
+            var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            Sessao.Configure(httpContextAccessor);
         }
 
         private void ConfigurarCultureInfo()

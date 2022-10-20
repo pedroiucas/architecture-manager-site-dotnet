@@ -10,11 +10,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Site.Configurations;
+using Gerenciador.Configurations;
 using System.Globalization;
 using Dominio.Helpers;
+using Dominio.Servicos;
+using Dominio.Interfaces;
+using Dominio.Repositorios;
+using Repositorio.Repositorios;
 
-namespace Site
+namespace Gerenciador
 {
     public class Startup
     {
@@ -29,13 +33,16 @@ namespace Site
         {
             services.AddOptions();
 
+            //Adiciona AutoMapper
+            services.RegisterAutoMapper();
+
             services.AddMvc().AddViewLocalization();
 
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(120);
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                options.Cookie.Name = "Site.Session";
+                options.Cookie.Name = "Gerenciador.Session";
                 options.Cookie.HttpOnly = true;
             });
 
@@ -54,6 +61,12 @@ namespace Site
         private static void AddServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Servicos
+			services.AddScoped<IServicoExemplo, ServicoExemplo>();
+
+            //Repositorios
+            services.AddScoped<IRepositorioExemplo, RepositorioExemplo>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -80,8 +93,12 @@ namespace Site
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
+                    pattern: "{controller=Home}/{action=}");
             });
+
+
+            var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            Sessao.Configure(httpContextAccessor);
         }
 
         private void ConfigurarCultureInfo()

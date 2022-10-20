@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Site.Configurations
+namespace Gerenciador.Configurations
 {
 	public class AutoMapperConfigEntities
 	{
